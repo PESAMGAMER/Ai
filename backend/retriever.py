@@ -7,7 +7,8 @@ from hf_datasets_utils import load_legal_dataset  # เปลี่ยนมา�
 with open("backend/documents/thai_laws.json", "r", encoding="utf-8") as f:
     law_docs = json.load(f)
 
-texts = [doc["text"] for doc in law_docs]
+# ใช้ "question" เป็น text สำหรับ vectorizer
+texts = [doc["question"] for doc in law_docs]
 vectorizer = TfidfVectorizer().fit(texts)
 
 def retrieve_context(query, threshold=0.2):
@@ -17,9 +18,10 @@ def retrieve_context(query, threshold=0.2):
     sims = cosine_similarity(query_vec, vectorizer.transform(texts)).flatten()
     max_sim = sims.max()
     if max_sim >= threshold:
-        # ถ้าคล้ายพอสมควร ให้ใช้ context จาก documents
-        best_match = texts[sims.argmax()]
-        return best_match
+        # return เฉพาะ answer (string)
+        best_match_idx = sims.argmax()
+        best_doc = law_docs[best_match_idx]
+        return best_doc["answer"]
     else:
         # ใช้ dataset จาก HuggingFace ผ่านฟังก์ชันใน hf_datasets_utils.py
         dataset = load_legal_dataset()
