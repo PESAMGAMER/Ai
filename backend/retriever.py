@@ -21,8 +21,8 @@ def retrieve_context(query, threshold=0.2):
         # return เฉพาะ answer (string)
         best_match_idx = sims.argmax()
         best_doc = law_docs[best_match_idx]
-        # คืนทั้ง question+answer เพื่อให้ context สมบูรณ์
-        context = f"Q: {best_doc['answer']}"
+        # คืน answer จาก thai_laws.json โดยตรง
+        context = best_doc['answer']
         print("Selected context from thai_laws.json:", context)  # debug
         return context
     else:
