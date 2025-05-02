@@ -1,0 +1,16 @@
+body {
+    font-family: sans-serif;
+    padding: 2rem;
+    background: #f8f8f8;
+  }
+  .chat {
+    max-width: 600px;
+    margin: auto;
+  }
+  input {
+    width: 80%;
+    padding: 0.5rem;
+  }
+  button {
+    padding: 0.5rem 1rem;
+  }

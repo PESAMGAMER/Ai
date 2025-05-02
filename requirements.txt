@@ -1,0 +1,9 @@
+flask
+transformers
+scikit-learn
+python-dotenv
+torch
+protobuf
+tiktoken
+flask-cors
+datasets
