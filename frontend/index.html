@@ -6,11 +6,22 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>LegalBot - ถามตอบกฎหมาย</h1>
-  <div class="chat">
-    <input id="question" placeholder="พิมพ์คำถามเกี่ยวกับกฎหมาย...">
-    <button onclick="ask()">ถาม</button>
-    <div id="response"></div>
+  <div class="container">
+    <header>
+      <h1>LegalBot</h1>
+      <p class="subtitle">ถามตอบกฎหมายด้วย AI</p>
+    </header>
+    <div class="chat-window" id="chat-window">
+      <div class="chat-placeholder" id="chat-placeholder">
+        เริ่มต้นถามคำถามกฎหมายที่คุณสงสัยได้เลยที่นี่ 👋
+      </div>
+      <!-- ข้อความแชทจะแสดงที่นี่ -->
+    </div>
+    <!-- <div id="response"></div>  ลบหรือคอมเมนต์บรรทัดนี้ -->
+    <form class="chat-input" onsubmit="ask(); return false;">
+      <input id="question" placeholder="พิมพ์คำถามเกี่ยวกับกฎหมาย..." autocomplete="off">
+      <button type="submit">ถาม</button>
+    </form>
   </div>
   <script src="script.js"></script>
 </body>

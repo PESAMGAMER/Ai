@@ -21,7 +21,10 @@ def retrieve_context(query, threshold=0.2):
         # return เฉพาะ answer (string)
         best_match_idx = sims.argmax()
         best_doc = law_docs[best_match_idx]
-        return best_doc["answer"]
+        # คืนทั้ง question+answer เพื่อให้ context สมบูรณ์
+        context = f"Q: {best_doc['answer']}"
+        print("Selected context from thai_laws.json:", context)  # debug
+        return context
     else:
         # ใช้ dataset จาก HuggingFace ผ่านฟังก์ชันใน hf_datasets_utils.py
         dataset = load_legal_dataset()
@@ -55,5 +58,7 @@ def retrieve_context(query, threshold=0.2):
         ds_vectorizer = TfidfVectorizer().fit(dataset_texts)
         ds_query_vec = ds_vectorizer.transform([query])
         ds_sims = cosine_similarity(ds_query_vec, ds_vectorizer.transform(dataset_texts)).flatten()
-        best_match = dataset_texts[ds_sims.argmax()]
+        best_idx = ds_sims.argmax()
+        best_match = dataset_texts[best_idx]
+        print("Selected context from HuggingFace dataset:", best_match)  # debug
         return best_match
