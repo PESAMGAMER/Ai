@@ -8,8 +8,8 @@ hf_token = os.getenv("HF_AUTH_TOKEN")
 
 qa = pipeline(
     "question-answering",
-    model="airesearch/WangchanX-Legal-ThaiCCL-Retriever",
-    use_auth_token=hf_token
+    model="./trained_qa_model",
+    tokenizer="./trained_qa_model"
 )
 
 def get_answer(question, context):
