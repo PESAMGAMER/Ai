@@ -9,6 +9,11 @@ pip install -r requirements.txt
 ```
 3. รัน backend:
 ```bash
-python backend/app.py
+python backend/app.py 
 ```
 4. เปิด `frontend/index.html` ในเบราว์เซอร์
+
+. รัน train datasets:
+```bash
+python backend/train_qa.py 
+```
